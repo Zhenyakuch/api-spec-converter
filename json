@@ -1,0 +1,677 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Веб-сервис предоставления персональных данных государственной информационной системы «Регистр населения»",
+    "contact" : {
+      "name" : "Министерства внутренних дел Республики Беларусь",
+      "url" : "www.mvd.gov.by",
+      "email" : "uzgs@mvd.gov.by"
+    },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "/gisun-inf",
+    "description" : ""
+  } ],
+  "paths" : {
+    "/api/v1/classif/cl-changes" : {
+      "post" : {
+        "summary" : "Получение значений классификаторов за период",
+        "description" : "Веб-сервис предоставления персональных данных и генерации идентификационного номера государственной информационной системы «Регистр населения»",
+        "parameters" : [ {
+          "name" : "cms",
+          "in" : "query",
+          "description" : "Криптографическое сообщение в кодировке base64\",",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "IFsKICAgICAgICA1NDYsIDU0NywgNjI2LCA2MzcsCiAgICAgICAgNzA0LAoK\\nICAgICAgICA0ODEsCiAgICAgICAgNDgyLAogICAgICAgIDQ5NSwgNDk3LAog"
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "description" : "Хэш пароля в кодировке base64",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "AogICAgICA0NjUsCiAgICAgIDQ2Ni"
+        }, {
+          "name" : "username",
+          "in" : "query",
+          "description" : "Текст с именем пользователя",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "user1"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос успешно выполнен и в результате были получены данные",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClChanges"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Этот ответ означает, что сервер не понимает запрос из-за неверного синтаксиса",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClChanges"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Для получения запрашиваемого ответа нужна аутентификация",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClChanges"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "У клиента нет прав доступа к содержимому, поэтому сервер отказывается дать надлежащий ответ",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClChanges"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Сервер не может найти запрашиваемый ресурс",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClChanges"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Сервер столкнулся с ситуацией, которую он не знает как обработать",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClChanges"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/classif/cl-types" : {
+      "post" : {
+        "summary" : "Получение типов классификаторов",
+        "description" : "Веб-сервис предоставления персональных данных и генерации идентификационного номера государственной информационной системы «Регистр населения»",
+        "parameters" : [ {
+          "name" : "cms",
+          "in" : "query",
+          "description" : "Криптографическое сообщение в кодировке base64\",",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "IFsKICAgICAgICA1NDYsIDU0NywgNjI2LCA2MzcsCiAgICAgICAgNzA0LAoK\\nICAgICAgICA0ODEsCiAgICAgICAgNDgyLAogICAgICAgIDQ5NSwgNDk3LAog"
+        }, {
+          "name" : "password",
+          "in" : "query",
+          "description" : "Хэш пароля в кодировке base64",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "AogICAgICA0NjUsCiAgICAgIDQ2Ni"
+        }, {
+          "name" : "username",
+          "in" : "query",
+          "description" : "Текст с именем пользователя",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "user1"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Запрос успешно выполнен и в результате были получены данные",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClTypes"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Этот ответ означает, что сервер не понимает запрос из-за неверного синтаксиса",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClTypes"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Для получения запрашиваемого ответа нужна аутентификация",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClTypes"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "У клиента нет прав доступа к содержимому, поэтому сервер отказывается дать надлежащий ответ",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClTypes"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Сервер не может найти запрашиваемый ресурс",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClTypes"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Сервер столкнулся с ситуацией, которую он не знает как обработать",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ClTypes"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+	  "ClChanges" : {
+        "type" : "object",
+        "properties" : {
+          "cover" : {
+            "$ref" : "#/components/schemas/MessageCover"
+          },
+          "changes" : {
+            "$ref" : "#/components/schemas/ClassifierList"
+          }
+        }
+      },
+	  "ClTypes" : {
+        "type" : "object",
+        "properties" : {
+          "cover" : {
+            "$ref" : "#/components/schemas/MessageCover"
+          },
+          "types" : {
+            "$ref" : "#/components/schemas/ClassifierList"
+          }
+        }
+      },
+	  "Classifier" : {
+        "description" : "Классификатор",
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "description" : "Кодовое значение",
+            "type" : "string"
+          },
+          "type" : {
+            "format" : "int32",
+            "description" : "Тип классификатора",
+            "type" : "integer"
+          },
+          "lexema" : {
+            "description" : "Данне списка лексем",
+            "type" : "object",
+            "properties" : {
+              "value" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/LangValue"
+                }
+              },
+              "langValue" : {
+                "$ref" : "#/components/schemas/LangValue"
+              }
+            }
+          },
+          "active" : {
+            "description" : "Признак активности",
+            "type" : "boolean"
+          },
+          "begin_date" : {
+            "description" : "Дата формирования",
+            "type" : "object"
+          },
+          "end_date" : {
+            "description" : "Дата упразднения",
+            "type" : "object"
+          },
+          "parents" : {
+            "$ref" : "#/components/schemas/ClassifierList"
+          }
+        }
+      },
+      "LangValue" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          },
+          "lang" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ClassifierList" : {
+        "type" : "object",
+        "properties" : {
+          "classifier" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Classifier"
+            }
+          }
+        }
+      },
+      "ClRequest" : {
+        "description" : "Данные запроса поиска ATE объектов, у которых внесение в реестр или аннулирование записи произошло после указанной даты",
+        "type" : "object",
+        "properties" : {
+          "cover" : {
+            "description" : "Сопроводительная информация к электронному документу",
+            "type" : "object",
+            "properties" : {
+              "message_id" : {
+                "description" : "Индикатор сообщения",
+                "type" : "string"
+              },
+              "message_type" : {
+                "description" : "Тип сообщения",
+                "type" : "object",
+                "properties" : {
+                  "code" : {
+                    "description" : "Кодовое значение",
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "format" : "int32",
+                    "description" : "Тип классификатора",
+                    "type" : "integer"
+                  },
+                  "lexema" : {
+                    "description" : "Данне списка лексем",
+                    "type" : "object",
+                    "properties" : {
+                      "value" : {
+                        "type" : "array",
+                        "items" : {
+                          "$ref" : "#/components/schemas/LangValue"
+                        }
+                      },
+                      "langValue" : {
+                        "$ref" : "#/components/schemas/LangValue"
+                      }
+                    }
+                  },
+                  "active" : {
+                    "description" : "Признак активности",
+                    "type" : "boolean"
+                  },
+                  "begin_date" : {
+                    "description" : "Дата формирования",
+                    "type" : "object"
+                  },
+                  "end_date" : {
+                    "description" : "Дата упразднения",
+                    "type" : "object"
+                  },
+                  "parents" : {
+                    "$ref" : "#/components/schemas/ClassifierList"
+                  }
+                }
+              },
+              "message_time" : {
+                "description" : "Время отправки сообщения",
+                "type" : "object"
+              },
+              "message_source" : {
+                "description" : "Источник сообщения",
+                "type" : "object",
+                "properties" : {
+                  "code" : {
+                    "description" : "Кодовое значение",
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "format" : "int32",
+                    "description" : "Тип классификатора",
+                    "type" : "integer"
+                  },
+                  "lexema" : {
+                    "description" : "Данне списка лексем",
+                    "type" : "object",
+                    "properties" : {
+                      "value" : {
+                        "type" : "array",
+                        "items" : {
+                          "$ref" : "#/components/schemas/LangValue"
+                        }
+                      },
+                      "langValue" : {
+                        "$ref" : "#/components/schemas/LangValue"
+                      }
+                    }
+                  },
+                  "active" : {
+                    "description" : "Признак активности",
+                    "type" : "boolean"
+                  },
+                  "begin_date" : {
+                    "description" : "Дата формирования",
+                    "type" : "object"
+                  },
+                  "end_date" : {
+                    "description" : "Дата упразднения",
+                    "type" : "object"
+                  },
+                  "parents" : {
+                    "$ref" : "#/components/schemas/ClassifierList"
+                  }
+                }
+              },
+              "parent_message_id" : {
+                "description" : "Идентификатор сообщения, на который происходит ответ",
+                "type" : "string"
+              },
+              "system_id" : {
+                "$ref" : "#/components/schemas/Classifier"
+              }
+            }
+          },
+          "request" : {
+            "description" : "Объект данных, содержащий дату внесения в реестр или аннулирования записи",
+            "type" : "object",
+            "properties" : {
+              "cl_type" : {
+                "format" : "int32",
+                "description" : "Тип поиска",
+                "type" : "integer"
+              },
+              "date_from" : {
+                "description" : "Дата внесения в реестр или аннулирования записи",
+                "type" : "object"
+              }
+            }
+          }
+        }
+      },
+      "ClRequestData" : {
+        "description" : "Объект данных, содержащий дату внесения в реестр или аннулирования записи",
+        "type" : "object",
+        "properties" : {
+          "cl_type" : {
+            "format" : "int32",
+            "description" : "Тип поиска",
+            "type" : "integer"
+          },
+          "date_from" : {
+            "description" : "Дата внесения в реестр или аннулирования записи",
+            "type" : "object"
+          }
+        }
+      },
+      "ClTypesRequest" : {
+        "description" : "Данные запроса получения типов классификаторов",
+        "type" : "object",
+        "properties" : {
+          "cover" : {
+            "description" : "Сопроводительная информация к электронному документу",
+            "type" : "object",
+            "properties" : {
+              "message_id" : {
+                "description" : "Индикатор сообщения",
+                "type" : "string"
+              },
+              "message_type" : {
+                "description" : "Тип сообщения",
+                "type" : "object",
+                "properties" : {
+                  "code" : {
+                    "description" : "Кодовое значение",
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "format" : "int32",
+                    "description" : "Тип классификатора",
+                    "type" : "integer"
+                  },
+                  "lexema" : {
+                    "description" : "Данне списка лексем",
+                    "type" : "object",
+                    "properties" : {
+                      "value" : {
+                        "type" : "array",
+                        "items" : {
+                          "$ref" : "#/components/schemas/LangValue"
+                        }
+                      },
+                      "langValue" : {
+                        "$ref" : "#/components/schemas/LangValue"
+                      }
+                    }
+                  },
+                  "active" : {
+                    "description" : "Признак активности",
+                    "type" : "boolean"
+                  },
+                  "begin_date" : {
+                    "description" : "Дата формирования",
+                    "type" : "object"
+                  },
+                  "end_date" : {
+                    "description" : "Дата упразднения",
+                    "type" : "object"
+                  },
+                  "parents" : {
+                    "$ref" : "#/components/schemas/ClassifierList"
+                  }
+                }
+              },
+              "message_time" : {
+                "description" : "Время отправки сообщения",
+                "type" : "object"
+              },
+              "message_source" : {
+                "description" : "Источник сообщения",
+                "type" : "object",
+                "properties" : {
+                  "code" : {
+                    "description" : "Кодовое значение",
+                    "type" : "string"
+                  },
+                  "type" : {
+                    "format" : "int32",
+                    "description" : "Тип классификатора",
+                    "type" : "integer"
+                  },
+                  "lexema" : {
+                    "description" : "Данне списка лексем",
+                    "type" : "object",
+                    "properties" : {
+                      "value" : {
+                        "type" : "array",
+                        "items" : {
+                          "$ref" : "#/components/schemas/LangValue"
+                        }
+                      },
+                      "langValue" : {
+                        "$ref" : "#/components/schemas/LangValue"
+                      }
+                    }
+                  },
+                  "active" : {
+                    "description" : "Признак активности",
+                    "type" : "boolean"
+                  },
+                  "begin_date" : {
+                    "description" : "Дата формирования",
+                    "type" : "object"
+                  },
+                  "end_date" : {
+                    "description" : "Дата упразднения",
+                    "type" : "object"
+                  },
+                  "parents" : {
+                    "$ref" : "#/components/schemas/ClassifierList"
+                  }
+                }
+              },
+              "parent_message_id" : {
+                "description" : "Идентификатор сообщения, на который происходит ответ",
+                "type" : "string"
+              },
+              "system_id" : {
+                "$ref" : "#/components/schemas/Classifier"
+              }
+            }
+          }
+        }
+      },
+      "MessageCover" : {
+        "type" : "object",
+        "properties" : {
+          "message_id" : {
+            "description" : "Индикатор сообщения",
+            "type" : "string"
+          },
+          "message_type" : {
+            "description" : "Тип сообщения",
+            "type" : "object",
+            "properties" : {
+              "code" : {
+                "description" : "Кодовое значение",
+                "type" : "string"
+              },
+              "type" : {
+                "format" : "int32",
+                "description" : "Тип классификатора",
+                "type" : "integer"
+              },
+              "lexema" : {
+                "description" : "Данне списка лексем",
+                "type" : "object",
+                "properties" : {
+                  "value" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/LangValue"
+                    }
+                  },
+                  "langValue" : {
+                    "$ref" : "#/components/schemas/LangValue"
+                  }
+                }
+              },
+              "active" : {
+                "description" : "Признак активности",
+                "type" : "boolean"
+              },
+              "begin_date" : {
+                "description" : "Дата формирования",
+                "type" : "object"
+              },
+              "end_date" : {
+                "description" : "Дата упразднения",
+                "type" : "object"
+              },
+              "parents" : {
+                "$ref" : "#/components/schemas/ClassifierList"
+              }
+            }
+          },
+          "message_time" : {
+            "description" : "Время отправки сообщения",
+            "type" : "object"
+          },
+          "message_source" : {
+            "description" : "Источник сообщения",
+            "type" : "object",
+            "properties" : {
+              "code" : {
+                "description" : "Кодовое значение",
+                "type" : "string"
+              },
+              "type" : {
+                "format" : "int32",
+                "description" : "Тип классификатора",
+                "type" : "integer"
+              },
+              "lexema" : {
+                "description" : "Данне списка лексем",
+                "type" : "object",
+                "properties" : {
+                  "value" : {
+                    "type" : "array",
+                    "items" : {
+                      "$ref" : "#/components/schemas/LangValue"
+                    }
+                  },
+                  "langValue" : {
+                    "$ref" : "#/components/schemas/LangValue"
+                  }
+                }
+              },
+              "active" : {
+                "description" : "Признак активности",
+                "type" : "boolean"
+              },
+              "begin_date" : {
+                "description" : "Дата формирования",
+                "type" : "object"
+              },
+              "end_date" : {
+                "description" : "Дата упразднения",
+                "type" : "object"
+              },
+              "parents" : {
+                "$ref" : "#/components/schemas/ClassifierList"
+              }
+            }
+          },
+          "parent_message_id" : {
+            "description" : "Идентификатор сообщения, на который происходит ответ",
+            "type" : "string"
+          },
+          "system_id" : {
+            "$ref" : "#/components/schemas/Classifier"
+          }
+        }
+      }
+    }
+  }
+}
